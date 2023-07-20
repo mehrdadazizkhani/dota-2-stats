@@ -7,7 +7,9 @@ import { BsArrowsCollapse, BsArrowsExpand } from "react-icons/bs";
 const GET_LIVEMATCHES = gql`
   query {
     live {
-      matches(request: { isParsing: true, take: 20 }) {
+      matches(
+        request: { isParsing: true, take: 20, orderBy: SPECTATOR_COUNT }
+      ) {
         matchId
         gameTime
         gameMinute

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSun, FaMoon, FaRegEye } from "react-icons/fa";
-import Loading from "../base/Loading";
 import { AreaChart, ResponsiveContainer, Area } from "recharts";
+import { Link } from "react-router-dom";
 
 const LiveMatch = ({ matchData, collapse }) => {
   const min = String(
@@ -24,13 +24,15 @@ const LiveMatch = ({ matchData, collapse }) => {
           {matchData.completed ? "Finished" : "Live"}
         </span>
         <div className="flex items-center gap-1">
-          {isNight ? (
-            <FaSun className="text-dark-draw" />
-          ) : (
-            <FaMoon className="text-dark-win" />
-          )}
+          {matchData.gameTime > 0 &&
+            (isNight ? (
+              <FaSun className="text-dark-draw" />
+            ) : (
+              <FaMoon className="text-dark-win" />
+            ))}
           <span>
-            {min}:{sec}
+            {matchData.gameTime < 0 ? "Upcoming" : min}
+            {matchData.gameTime < 0 ? " Match" : `:${sec}`}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -39,9 +41,7 @@ const LiveMatch = ({ matchData, collapse }) => {
         <div className="absolute left-0 hidden h-full w-full rounded-sm bg-light-secondary group-hover:flex">
           {matchData.league ? (
             <div className="flex w-full items-center justify-between px-4">
-              <a href={matchData.league.tournamentUrl} target="_blank">
-                {matchData.league.displayName}
-              </a>
+              <h1>{matchData.league.displayName}</h1>
               <img
                 className="h-full"
                 src={`https://cdn.stratz.com/images/dota2/leagues/${matchData.league.id}.png`}
@@ -62,7 +62,7 @@ const LiveMatch = ({ matchData, collapse }) => {
             {matchData.radiantScore}
           </span>
           Radiant{" "}
-          {matchData.radiantLead > 0 && (
+          {matchData.radiantLead != 0 && matchData.radiantLead > 0 && (
             <div className="flex items-center gap-1 text-dark-draw">
               <span>+{(matchData.radiantLead / 1000).toFixed(1)}k</span>
               <img
@@ -90,15 +90,18 @@ const LiveMatch = ({ matchData, collapse }) => {
               return (
                 player.isRadiant &&
                 (matchData.gameMinute > 0 ? (
-                  <img
-                    title={player.steamAccount.name}
-                    className="w-5"
-                    key={player.steamAccount.id}
-                    src={`https://cdn.stratz.com/images/dota2/heroes/${player.hero.shortName}_icon.png`}
-                    alt={player.steamAccount.name}
-                  />
+                  <Link to={`/player/${player.steamAccount.id}`}>
+                    <img
+                      title={player.steamAccount.name}
+                      className="w-5"
+                      key={player.steamAccount.id}
+                      src={`https://cdn.stratz.com/images/dota2/heroes/${player.hero.shortName}_icon.png`}
+                      alt={player.steamAccount.name}
+                    />
+                  </Link>
                 ) : (
                   <div
+                    key={player.steamAccount.id}
                     title={player.steamAccount.name}
                     className="aspect-square w-5 rounded-full bg-light-primary"
                   ></div>
@@ -128,7 +131,9 @@ const LiveMatch = ({ matchData, collapse }) => {
             </AreaChart>
           </ResponsiveContainer>
         ) : (
-          <Loading />
+          <span className="animate-pulse text-dark-chart1">
+            no data available
+          </span>
         )}
         {matchData.gameMinute > 0 && (
           <div className="absolute h-[1px] w-full bg-light-primary"></div>
@@ -177,6 +182,7 @@ const LiveMatch = ({ matchData, collapse }) => {
                   />
                 ) : (
                   <div
+                    key={player.steamAccount.id}
                     title={player.steamAccount.name}
                     className="aspect-square w-5 rounded-full bg-light-primary"
                   ></div>

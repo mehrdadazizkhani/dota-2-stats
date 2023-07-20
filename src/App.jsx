@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/layout/Layout";
-
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import Layout from "./components/layout/Layout";
+import PlayerPage from "./pages/playerPage";
 
 const client = new ApolloClient({
   uri: "https://api.stratz.com/graphql",
@@ -16,7 +16,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout />}></Route>
+          <Route path="/" element={<Layout />}>
+            <Route path="/player/:id" element={<PlayerPage />} />
+          </Route>
         </Routes>
       </Router>
     </ApolloProvider>
