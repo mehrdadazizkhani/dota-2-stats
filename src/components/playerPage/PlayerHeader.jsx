@@ -14,9 +14,6 @@ const PlayerHeader = ({ playerID }) => {
           isDotaPlusSubscriber
           seasonRank
           seasonLeaderboardRank
-          activity {
-            activity
-          }
           guild {
             guild {
               name
@@ -93,7 +90,9 @@ const PlayerHeader = ({ playerID }) => {
                   href=""
                   className="ml-3 text-3xl font-bold text-dark-content/50"
                 >
-                  {player.proSteamAccount.team.tag}.
+                  {player.proSteamAccount.team &&
+                    player.proSteamAccount.team.tag}
+                  .
                 </a>
               )}
               <h2 className="text-3xl font-medium text-dark-heading">

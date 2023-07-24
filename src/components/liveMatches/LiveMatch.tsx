@@ -88,24 +88,26 @@ const LiveMatch = ({ matchData, collapse }) => {
           ) : (
             matchData.players.map((player) => {
               return (
-                player.isRadiant &&
-                (matchData.gameMinute > 0 ? (
-                  <Link to={`/player/${player.steamAccount.id}`}>
-                    <img
-                      title={player.steamAccount.name}
-                      className="w-5"
-                      key={player.steamAccount.id}
-                      src={`https://cdn.stratz.com/images/dota2/heroes/${player.hero.shortName}_icon.png`}
-                      alt={player.steamAccount.name}
-                    />
-                  </Link>
-                ) : (
-                  <div
+                player.isRadiant && (
+                  <Link
                     key={player.steamAccount.id}
-                    title={player.steamAccount.name}
-                    className="aspect-square w-5 rounded-full bg-light-primary"
-                  ></div>
-                ))
+                    to={`/player/${player.steamAccount.id}`}
+                  >
+                    {matchData.gameMinute > 0 ? (
+                      <img
+                        title={player.steamAccount.name}
+                        className="w-5"
+                        src={`https://cdn.stratz.com/images/dota2/heroes/${player.hero.shortName}_icon.png`}
+                        alt={player.steamAccount.name}
+                      />
+                    ) : (
+                      <div
+                        title={player.steamAccount.name}
+                        className="aspect-square w-5 rounded-full bg-light-primary"
+                      ></div>
+                    )}
+                  </Link>
+                )
               );
             })
           )}
@@ -171,22 +173,26 @@ const LiveMatch = ({ matchData, collapse }) => {
           ) : (
             matchData.players.map((player) => {
               return (
-                !player.isRadiant &&
-                (matchData.gameMinute > 0 ? (
-                  <img
-                    title={player.steamAccount.name}
-                    className="w-5"
+                !player.isRadiant && (
+                  <Link
                     key={player.steamAccount.id}
-                    src={`https://cdn.stratz.com/images/dota2/heroes/${player.hero.shortName}_icon.png`}
-                    alt={player.steamAccount.name}
-                  />
-                ) : (
-                  <div
-                    key={player.steamAccount.id}
-                    title={player.steamAccount.name}
-                    className="aspect-square w-5 rounded-full bg-light-primary"
-                  ></div>
-                ))
+                    to={`/player/${player.steamAccount.id}`}
+                  >
+                    {matchData.gameMinute > 0 ? (
+                      <img
+                        title={player.steamAccount.name}
+                        className="w-5"
+                        src={`https://cdn.stratz.com/images/dota2/heroes/${player.hero.shortName}_icon.png`}
+                        alt={player.steamAccount.name}
+                      />
+                    ) : (
+                      <div
+                        title={player.steamAccount.name}
+                        className="aspect-square w-5 rounded-full bg-light-primary"
+                      ></div>
+                    )}
+                  </Link>
+                )
               );
             })
           )}

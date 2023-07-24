@@ -7,8 +7,8 @@ export default {
     },
     colors: {
       light: {
-        primary: "#181818",
-        secondary: "#313131",
+        primary: "#0f0f0f",
+        secondary: "#202020",
         accent: "#3563E9",
         heading: "rgba(255, 255, 255, 0.8)",
         content: "rgba(255, 255, 255, 0.6)",
@@ -19,8 +19,8 @@ export default {
         chart2: "#9655d8",
       },
       dark: {
-        primary: "#181818",
-        secondary: "#313131",
+        primary: "#0f0f0f",
+        secondary: "#202020",
         accent: "#3563E9",
         heading: "rgba(255, 255, 255, 0.8)",
         content: "rgba(255, 255, 255, 0.6)",
