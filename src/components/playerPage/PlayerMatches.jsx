@@ -49,7 +49,7 @@ const PlayerMatches = ({ playerID }) => {
         <h1 className="bg-dark-secondary px-4 py-6 text-xl font-medium">
           Matches
         </h1>
-        <div className="flex flex-col gap-[1px] overflow-x-auto">
+        <div className="flex flex-col gap-[1px] overflow-x-auto scrollbar-thin scrollbar-track-dark-secondary scrollbar-thumb-dark-content">
           {matches.map((match, index) => (
             <a
               key={match.id}

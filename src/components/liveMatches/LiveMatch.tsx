@@ -119,7 +119,7 @@ const LiveMatch = ({ matchData, collapse }) => {
         } relative h-20 w-full items-center justify-center`}
       >
         {matchData.gameMinute > 0 ? (
-          <ResponsiveContainer width="100%" height="100%" className="z-10">
+          <ResponsiveContainer aspect={undefined} height={100} className="z-10">
             <AreaChart data={winRateData}>
               <Area
                 width={10}

@@ -38,7 +38,10 @@ const MatchCount = ({ playerID }) => {
       </div>
       <div className="relative flex h-2 justify-evenly overflow-hidden rounded-md bg-light-draw">
         {matchCountDens.map((item) => (
-          <div className="z-10 h-full w-[1px] bg-light-secondary"></div>
+          <div
+            key={item}
+            className="z-10 h-full w-[1px] bg-light-secondary"
+          ></div>
         ))}
       </div>
     </section>
