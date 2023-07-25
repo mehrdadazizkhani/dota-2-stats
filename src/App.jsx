@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Layout from "./components/layout/Layout";
-import PlayerPage from "./pages/playerPage";
+import PlayerPage from "./pages/PlayerPage";
 
 const client = new ApolloClient({
   uri: "https://api.stratz.com/graphql",
